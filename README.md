@@ -8,3 +8,8 @@ BUT - the repo uses one dockerfile per arch, and a filename that i can't find do
 ## what's the minimum to build more than one arch?
 
 Can I just add the `hook/pre_build`, and a single Dockerfile?
+
+NOPE - Docker hub loads the hook, but then builds the Dockerfile as amd64
+
+## will adding a `arm32v7.dockerfile` build 2 archs?
+
