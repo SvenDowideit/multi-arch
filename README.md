@@ -13,3 +13,8 @@ NOPE - Docker hub loads the hook, but then builds the Dockerfile as amd64
 
 ## will adding a `arm32v7.dockerfile` build 2 archs?
 
+
+NOPE, looks to me like if there is a `Dockerfile` then Hub just build amd64
+
+## rename `Dockerfile` to `amd64.dockerfile`
+
