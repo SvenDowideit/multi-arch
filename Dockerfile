@@ -1,4 +1,4 @@
-FROM node:12-buster
+FROM --platform=arm node:12-buster
 
 ARG branch=master
 
