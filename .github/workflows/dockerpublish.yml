@@ -38,7 +38,7 @@ jobs:
           docker buildx build \
             --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
             --output "type=image,push=false" \
-            --file ./test/Dockerfile ./test
+            .
     # - name: 'Checkout git repo'
     #   uses: actions/checkout@v1
     # - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
