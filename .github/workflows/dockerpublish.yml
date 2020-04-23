@@ -29,6 +29,9 @@ jobs:
     - uses: docker://multiarch/ubuntu-core:arm64-bionic
       with:
         args: 'uname -a'
+    - uses: docker://multiarch/ubuntu-core:arm64-bionic
+      with:
+        args: 'ls -lah'
     - name: 'Build and push Image'
       uses: docker/build-push-action@v1
       with:
