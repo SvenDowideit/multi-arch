@@ -32,12 +32,18 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+
+      -
+        name: Login to DockerHub Registry
+        uses: actions/checkout@v1
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
       -
         name: Run Buildx
         run: |
           docker buildx build \
             --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
-            --output "type=image,push=false" \
+            --output "type=image,push=true" \
             .
     # - name: 'Checkout git repo'
     #   uses: actions/checkout@v1
