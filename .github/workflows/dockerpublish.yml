@@ -32,25 +32,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Install Buildx v0.3.1
-        run: |
-          mkdir -p ~/.docker/cli-plugins/
-          curl -o ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.3.1/buildx-v0.3.1.linux-amd64
-          chmod a+x ~/.docker/cli-plugins/docker-buildx
-      -
-        name: Available platforms
-        run: |
-          echo ${{ steps.buildx.outputs.platforms }}
-          docker version
-          export DOCKER_CLI_EXPERIMENTAL=enabled
-          docker info
-          docker buildx build --help
+        name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
       -
         name: Run Buildx
         #            --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x \
         run: |
-          DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build \
+          docker buildx build \
             --platform linux/amd64,linux/arm64,linux/arm/v7 \
-            --tag svendowideit/multi-arch \
+            --tag sven/multi-arch \
             --output "type=image,push=true" \
             .
